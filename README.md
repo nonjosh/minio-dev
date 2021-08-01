@@ -6,17 +6,13 @@
 docker-compose up -d
 ```
 
-## Download MinIO Client
-
-Download binary for Linux
-
-```sh
-wget https://dl.min.io/client/mc/release/linux-amd64/mc
-```
-
 ## TODO
 
 - [x] mc
+    Download binary for Linux
+    ```sh
+    wget https://dl.min.io/client/mc/release/linux-amd64/mc
+    ```
 - [x] bucket policy
     Create public access to a bucket/directory
     ```sh
