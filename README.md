@@ -17,35 +17,35 @@ docker-compose up -d
     Create public access to a bucket/directory
     ```sh
     # change bucket policy: mc policy {policy} {host}/{bucket}
-    mc policy set public local/mybucket
+    mc policy set public myminio/mybucket
     ```
 - [x] user policy
     ```sh
     #Add a new user 'myuser' on MinIO.
-    mc admin user add local/ myuser password
+    mc admin user add myminio/ myuser password
 
     #Disable a user 'myuser' on MinIO.
-    mc admin user disable local/ myuser
+    mc admin user disable myminio/ myuser
 
     #List all users on MinIO.
-    mc admin user list --json local/
+    mc admin user list --json myminio/
 
     #Display info of a user
-    mc admin user info local myuser
+    mc admin user info myminio myuser
 
     #Example: Add a user to a group 'mygroup' on MinIO.
     #Group is created if it does not exist.
 
-    mc admin group add local mygroup myuser
+    mc admin group add myminio mygroup myuser
 
     #Remove user from a group 'mygroup' on MinIO.
-    mc admin group remove local mygroup myuser
+    mc admin group remove myminio mygroup myuser
 
     #Get info on a group 'mygroup' on MinIO.
-    mc admin group info local mygroup
+    mc admin group info myminio mygroup
 
     #List all groups on MinIO.
-    mc admin group list local
+    mc admin group list myminio
 
 
     #Create a new user with policy
@@ -61,10 +61,10 @@ docker-compose up -d
     #writeonly
     #Grants write-only permissions for all buckets and objects on the MinIO server.
 
-    ./mc admin policy set local readwrite user=myuser
-    ./mc admin policy set local readonly user=myuser
-    ./mc admin policy set local diagnostics user=myuser
-    ./mc admin policy set local writeonly user=myuser
+    ./mc admin policy set myminio readwrite user=myuser
+    ./mc admin policy set myminio readonly user=myuser
+    ./mc admin policy set myminio diagnostics user=myuser
+    ./mc admin policy set myminio writeonly user=myuser
     ```
 - [ ] [Select API](https://docs.min.io/docs/minio-select-api-quickstart-guide.html)
     - [x] enable parquet support
