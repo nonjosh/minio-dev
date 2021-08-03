@@ -87,7 +87,7 @@ docker-compose up -d
     kubectl apply -f https://github.com/minio/operator/blob/master/examples/tenant.yaml
     ```
 - [ ] troubleshoot `413 Request Entity Too Large` when using nginx
-- [ ] MinFS
+- [ ] [MinFS](https://github.com/minio/minfs)
 
 # References
 
