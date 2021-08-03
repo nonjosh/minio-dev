@@ -13,6 +13,7 @@ docker-compose up -d
     ```sh
     wget https://dl.min.io/client/mc/release/linux-amd64/mc
     ```
+- [x] create shareable link for object (with expiry time)
 - [x] bucket policy
     Create public access to a bucket/directory
     ```sh
