@@ -66,12 +66,12 @@ docker-compose up -d
     ./mc admin policy set myminio diagnostics user=myuser
     ./mc admin policy set myminio writeonly user=myuser
     ```
-- [ ] [Select API](https://docs.min.io/docs/minio-select-api-quickstart-guide.html)
+- [x] [Select API](https://docs.min.io/docs/minio-select-api-quickstart-guide.html)
     - [x] enable parquet support
         To enable Parquet set the environment variable `MINIO_API_SELECT_PARQUET=on`
-    - [ ] single `csv` or `parquet` file
-    - [ ] directory of `csv` files
-    - [ ] directory of `parquet` files
+    - [x] single `csv` or `parquet` file
+    - [x] directory of `csv` files
+    - [x] directory of `parquet` files
 - [ ] [Delta Lake](https://docs.delta.io/latest/quick-start.html)
 - [ ] [Deploy MinIO Operator on Kubernetes](https://github.com/minio/operator)
     ```sh
