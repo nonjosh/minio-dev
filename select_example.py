@@ -9,7 +9,7 @@ mc sql --query "select * from S3Object where Location like '%United States%'" my
 import boto3
 
 s3 = boto3.client('s3',
-                  endpoint_url='http://localhost:9000',
+                  endpoint_url='http://192.168.0.101:9000',
                   aws_access_key_id='minio',
                   aws_secret_access_key='minio123',
                   region_name='us-east-1')
