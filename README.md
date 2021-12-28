@@ -106,3 +106,4 @@ docker-compose up -d
 - [Big Data without Hadoop/HDFS? MinIO tested on Jupyter + PySpark](https://python.plainenglish.io/big-data-without-hadoop-hdfs-minio-tested-on-jupter-pyspark-7b89a249ec94)
 - [s3-userguide](https://docs.aws.amazon.com/AmazonS3/latest/userguide/s3-userguide.pdf)
 - [mc admin guide](https://docs.min.io/docs/minio-admin-complete-guide.html#user)
+- [Simple AWS S3 Logging in Python3 Using Boto3](https://medium.com/nerd-for-tech/simple-aws-s3-logging-in-python3-using-boto3-cfbd345ef65b)
