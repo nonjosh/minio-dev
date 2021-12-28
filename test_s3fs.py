@@ -31,7 +31,7 @@ my_df
 # %%
 # Write back to MinIO
 with fs.open("test/people2.csv", "w") as f:
-    my_df.to_csv(f)
+    my_df.to_csv(f, index=False)
 with fs.open("test/people2.csv", "rb") as f:
     my_df = pd.read_csv(f)
 my_df

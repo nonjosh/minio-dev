@@ -12,7 +12,7 @@ storage_options = {
 # %%
 # Require s3fs
 df = pd.read_csv(
-    "s3://test/people2.csv",
+    "s3://test/people.csv",
     storage_options=storage_options,
 )
 df
