@@ -1,15 +1,15 @@
 """
-curl "https://population.un.org/wpp/Download/Files/1_Indicators%20(Standard)/CSV_FILES/WPP2019_TotalPopulationBySex.csv" > TotalPopulation.csv
-mc mb myminio/mycsvbucket
-gzip TotalPopulation.csv
-mc cp TotalPopulation.csv.gz myminio/mycsvbucket/sampledata/
-mc sql --query "select * from S3Object where Location like '%United States%'" myminio/mycsvbucket/sampledata/TotalPopulation.csv.gz
+curl "https://population.un.org/wpp/Download/Files/1_Indicators%20(Standard)/CSV_FILES/WPP2019_TotalPopulationBySex.csv" > data/TotalPopulation.csv
+gzip data/TotalPopulation.csv
+./bin/mc -C .mc mb myminio/mycsvbucket
+./bin/mc -C .mc cp data/TotalPopulation.csv.gz myminio/mycsvbucket/sampledata/
+./bin/mc -C .mc sql --query "select * from S3Object where Location like '%United States%'" myminio/mycsvbucket/sampledata/TotalPopulation.csv.gz
 """
 
 import boto3
 
 s3 = boto3.client('s3',
-                  endpoint_url='http://192.168.0.101:9000',
+                  endpoint_url='http://localhost:9000',
                   aws_access_key_id='minio',
                   aws_secret_access_key='minio123',
                   region_name='us-east-1')

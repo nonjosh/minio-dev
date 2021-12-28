@@ -14,7 +14,7 @@
                 "AWS_ACCESS_KEY_ID": "minio",
                 "AWS_SECRET_ACCESS_KEY": "minio123",
                 "AWS_DEFAULT_REGION": "us-east-1",
-                "AWS_STS_REGIONAL_ENDPOINTS": "http://192.168.0.101:9000",
+                "AWS_STS_REGIONAL_ENDPOINTS": "http://localhost:9000",
             }
         }
     ]

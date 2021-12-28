@@ -6,7 +6,7 @@ storage_options = {
     "key": "minio",
     "secret": "minio123",
     "client_kwargs": {
-        "endpoint_url": "http://192.168.0.101:9000",
+        "endpoint_url": "http://localhost:9000",
     },
 }
 # %%

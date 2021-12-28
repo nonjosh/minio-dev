@@ -1,4 +1,9 @@
+"""
+./bin/mc -C .mc mb myminio/test
+./bin/mc -C .mc cp --recursive data/test/ myminio/test/
+"""
 # %%
+import json
 import s3fs
 import pandas as pd
 
@@ -8,12 +13,12 @@ fs = s3fs.S3FileSystem(
     key="minio",
     secret="minio123",
     client_kwargs={
-        "endpoint_url": "http://192.168.0.101:9000",
+        "endpoint_url": "http://localhost:9000",
     },
 )
 # %%
 # List files/folders in bucket
-fs.ls("mycsvbucket/")
+fs.ls("test")
 # %%
 # Read csv files
 with fs.open("test/people.csv", "rb") as f:
@@ -42,4 +47,9 @@ with fs.open(
 ) as f:
     my_df = pd.read_csv(f)
 my_df
+# %%
+# Read json files
+with fs.open("test/people.json", "r") as f:
+    my_json = json.load(f)
+my_json
 # %%
