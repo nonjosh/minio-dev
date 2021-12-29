@@ -1,7 +1,3 @@
-"""
-./bin/mc -C .mc mb myminio/test
-./bin/mc -C .mc cp --recursive data/test/ myminio/test/
-"""
 # %%
 import json
 import s3fs

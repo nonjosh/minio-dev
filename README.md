@@ -1,9 +1,24 @@
 # Learn MinIO
 
-## Setup with Docker Compose
+## Setup
+
+### Start MinIO server with Docker Compose
 
 ```sh
 docker-compose up -d
+```
+
+### Import sample data
+
+```sh
+./bin/mc -C .mc mb myminio/mycsvbucket
+curl "https://population.un.org/wpp/Download/Files/1_Indicators%20(Standard)/CSV_FILES/WPP2019_TotalPopulationBySex.csv" > data/TotalPopulation.csv
+gzip data/TotalPopulation.csv
+./bin/mc -C .mc cp data/TotalPopulation.csv.gz myminio/mycsvbucket/sampledata/
+./bin/mc -C .mc sql --query "select * from S3Object where Location like '%United States%'" myminio/mycsvbucket/sampledata/TotalPopulation.csv.gz
+
+./bin/mc -C .mc mb myminio/test
+./bin/mc -C .mc cp --recursive data/test/ myminio/test/
 ```
 
 ## TODO
