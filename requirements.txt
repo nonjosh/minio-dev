@@ -3,3 +3,4 @@ s3fs
 pandas
 ipykernel
 pyarrow
+ipython>=7.16.3 # not directly required, pinned by Snyk to avoid a vulnerability
