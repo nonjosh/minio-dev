@@ -1,5 +1,5 @@
-boto3
-s3fs
-pandas
-ipykernel
-pyarrow
+boto3==1.21.22
+s3fs==0.4.2
+pandas==1.4.1
+jupyterlab==3.3.2
+pyarrow==7.0.0
