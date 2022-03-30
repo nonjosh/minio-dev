@@ -1,15 +1,14 @@
-import os
-import io
+"""https://medium.com/nerd-for-tech/simple-aws-s3-logging-in-python3-using-boto3-cfbd345ef65b"""
+import io, os
 import sys
 import logging
 import time
 from datetime import datetime
 import boto3
 
-DEFAULT_ENDPOINT_URL = "http://localhost:9000"
-
 
 def get_string_io_logger(log_stringio_obj, logger_name):
+    """get logger object for stringio object"""
     # create logger
     logger = logging.getLogger(logger_name)
     formatter = logging.Formatter(
@@ -55,11 +54,12 @@ def rename_file(key, backup_key, backup_strategy):
                 renamed_file = folder + file_name
         else:
             renamed_file = "{0}{1}/{2}".format(folder, backup_key, file_name)
-    except Exception as err:
-        print("Error Renaming file " + str(err))
+    except Exception as e:
+        print("Error Renaming file " + str(e))
+    finally:
+        return renamed_file
 
-    return renamed_file
-
+DEFAULT_ENDPOINT_URL = "http://localhost:9000"
 
 def put_content_to_s3(
     s3_path,
@@ -69,7 +69,6 @@ def put_content_to_s3(
     region_name="us-east-1",
     backup_key=None,
     backup_strategy="file",
-    endpoint_url=DEFAULT_ENDPOINT_URL,
 ):
     """
     Function to put string content to s3 for a given s3 path and region
@@ -91,7 +90,8 @@ def put_content_to_s3(
         bucket = s3_path.split("/")[2]
         key = "/".join(s3_path.split("/")[3:])
         if not s3_client:
-            s3_client_ = boto3.client("s3", region_name, endpoint_url=endpoint_url)
+            # s3_client_ = boto3.client("s3", region_name)
+            s3_client_ = boto3.client("s3", region_name, endpoint_url=DEFAULT_ENDPOINT_URL)
         else:
             s3_client_ = s3_client
 
@@ -100,7 +100,8 @@ def put_content_to_s3(
             results = s3_client_.list_objects(Bucket=bucket, Prefix=key)
             if "Contents" in results:
                 if not s3_resource:
-                    s3_resource_ = boto3.resource("s3", region_name)
+                    # s3_resource_ = boto3.resource("s3", region_name)
+                    s3_resource_ = boto3.resource("s3", region_name, endpoint_url=DEFAULT_ENDPOINT_URL)
                 else:
                     s3_resource_ = s3_resource
                 old_content = (
@@ -120,17 +121,18 @@ def put_content_to_s3(
         if s3_put_response["ResponseMetadata"]["HTTPStatusCode"] != 200:
             raise Exception("Unable to put data to s3: {0}".format(s3_put_response))
 
-    except Exception as err:
+    except Exception as e:
         return_object["success"] = False
         exception_message = "message: {0}\nline no:{1}\n".format(
-            str(err), sys.exc_info()[2].tb_lineno
+            str(e), sys.exc_info()[2].tb_lineno
         )
         return_object["data"] = exception_message
-
-    return return_object
+    finally:
+        return return_object
 
 
 def my_function():
+    """ Function to be logged """
     # create string i/o object as string buffer
     log_stringio_obj = io.StringIO()
 
@@ -145,9 +147,9 @@ def my_function():
         # do any task
         logger.info("Running my_function")
 
-    except Exception as err:
+    except Exception as e:
         exception_message = "message: {0}\nline no:{1}\n".format(
-            str(err), sys.exc_info()[2].tb_lineno
+            str(e), sys.exc_info()[2].tb_lineno
         )
         logger.error(exception_message)
 
@@ -159,11 +161,4 @@ def my_function():
         assert s3_store_response["success"], "Error Putting logs to S3:\n{0}".format(
             s3_store_response["data"]
         )
-
-
-def main():
-    my_function()
-
-
-if __name__ == "__main__":
-    main()
+my_function()
