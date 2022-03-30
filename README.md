@@ -113,7 +113,7 @@ gzip data/TotalPopulation.csv
   ```
   
 - [ ] troubleshoot `413 Request Entity Too Large` when using nginx
-- [ ] [MinFS](https://github.com/minio/minfs)
+- [x] [MinFS](https://github.com/minio/minfs)
 
 ## References
 
